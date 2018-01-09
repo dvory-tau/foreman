@@ -1,0 +1,25 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+         - "/var/log/messages"
+      input_type: log
+      document_type: syslog
+
+    -
+      paths:
+       - "/var/log/kernel"
+      input_type: log
+      document_type: kernel
+
+fields_under_root: true
+
+registry_file: /var/lib/filebeat/registry
+output:
+  logstash:
+    hosts: ["graylog.tau.ac.il:5044"]
+
+shipper:
+logging:
+  files:
+

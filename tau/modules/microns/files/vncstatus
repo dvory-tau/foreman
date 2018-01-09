@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ -z `ps -ef | grep $USER | grep -w Xvnc | grep -v grep | awk '{print $9}'` ]]; then
+
+        echo "launching vncserver..."
+
+        #/usr/bin/vncserver
+
+        /usr/bin/vncserver 
+
+        echo "NEVER logout from VNC, close and reopen it as needed"
+
+        exit
+
+fi
+
+        echo "vncserver displays from your previous sessions that are running:"
+
+        ps -ef | grep $USER | grep -w Xvnc | grep -v grep | awk '{print $9}'
+
+        echo "NEVER logout from VNC, close and reopen it as needed"

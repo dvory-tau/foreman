@@ -1,0 +1,12 @@
+node /^.*$/ {
+#  include rocksrepos
+#  include rockspuppet
+
+
+  # Explict configuration
+  ## Zabbix
+#  class { 'zabbix::agent':
+#    server => 'zabbix.tau.ac.il',
+#    serveractive => 'zabbix.tau.ac.il',
+#  }
+}

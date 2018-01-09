@@ -1,0 +1,20 @@
+#%Module3.4
+####################################################
+## Modulefile for Python-3.4.0 x86_64
+####################################################
+proc ModulesHelp { } {
+puts stderr "python/python-3.4.0 sets the environment for  x86_64"
+}
+module-whatis "sets the environment for using Python python-3.4.0"
+# for Tcl script use only
+set pythonversion 3.4.0
+set topdir /usr/local/bin/python3_anaconda
+prepend-path PATH $topdir/bin
+prepend-path INCLUDE $topdir/include
+prepend-path LD_RUN_PATH $topdir/lib
+#prepend-path LD_LIBRARY_PATH $topdir/lib
+prepend-path LICENSE_FILE  $topdir/LICENSE
+prepend-path MANPATH $topdir/man
+#set version python-3.4
+setenv PYTHONPATH $topdir/lib/python3.4
+

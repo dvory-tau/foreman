@@ -1,0 +1,4 @@
+$clienthost astrophys.local
+$clienthost astrophys2.local
+$restrict_user_maxsysid 999
+$usecp *:/ /

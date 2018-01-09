@@ -1,0 +1,9 @@
+class rocks::puppet (
+  $rocks_puppet_env =           $rocks::rocksparam::rocks_puppet_env,
+ ) inherits rocks::rocksparam {
+	service {'puppet':
+		ensure => running,
+		enable => true,
+	} 
+}
+

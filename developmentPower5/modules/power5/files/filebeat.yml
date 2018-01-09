@@ -1,0 +1,34 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+         - "/var/spool/PBS/mom_logs/*"
+      input_type: log
+      include_lines: ['.*Job.*']
+      document_type: pbs power5
+    -
+      paths:
+         - "/var/log/messages"
+      input_type: log
+      document_type: syslog
+
+    -
+      paths:
+       - "/var/log/kernel"
+      input_type: log
+      document_type: kernel
+
+fields_under_root: true
+
+fields:
+        cluster: power5
+
+registry_file: /var/lib/filebeat/registry
+output:
+  logstash:
+    hosts: ["132.66.114.116:5044"]
+
+shipper:
+logging:
+  files:
+

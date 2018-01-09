@@ -1,0 +1,82 @@
+class gamma::gpfs{
+
+	exec { 'SCP the RPM\'s':
+	command  => '/usr/bin/scp root@gddn249:/var/ddn/client_rpms/gpfs* /tmp/',
+	cwd      => '/tmp/',
+	user     => 'root',
+	}
+
+	exec { 'Installing GPFS RPM\'s':
+	command => '/usr/bin/yum install /tmp/gpfs*.rpm',
+	user => 'root',
+	}
+
+	exec { 'Compile portability layer':
+	command => '/usr/lpp/mmfs/bin/mmbuildgpl --build-package',
+	environment => 'LINUX_DISTRIBUTION=REDHAT_AS_LINUX',
+	user => 'root',
+	}
+
+	exec { 'Adding_node_to_cluster':
+	command => "/usr/bin/ssh -t root@gddn249 /usr/lpp/mmfs/bin/mmaddnode -N ${hostname}-ib",
+#	onlyif  => "test ! -f /usr/sbin/opaconfig && test ! -f /tmp/omnipath_failed",
+	user => 'root',
+	}
+
+	exec { 'Adding license':
+	command => '/usr/bin/ssh -t gddn249 mmchlicense client --accept -N ${hostname}-ib',
+	user => 'root',
+	}
+
+	exec { 'Defines the RDMA port for the client usually its as written in the command. ':
+	command => '/usr/bin/ssh -t gddn249 mmchconfig verbsPorts="hfi1_0/1" -N ${hostname}-ib',
+	user => 'root',
+	}
+	
+	exec { 'Verify with opainfo on the node, if otherwise. Enables RDMA on the nodes ':
+	command => '/usr/bin/ssh -t gddn249 mmchconfig verbsRdma=enable -N ${hostname}-ib',
+	user => 'root',
+	}
+	
+	exec { 'Start nodes ':
+	command => '/usr/bin/ssh -t gddn249 mmstartup -N ${hostname}-ib',
+	user => 'root',
+	}
+
+	exec { 'validate node are active  ':
+	command => '/usr/bin/ssh -t gddn249 mmgetstate -N ${hostname}-ib',
+	user => 'root',
+	}
+
+	exec { 'Test RDMA to ensure started  ':
+	command => '/usr/lpp/mmfs/bin/mmfsadm test verbs status',
+	user => 'root',
+	}
+
+	exec { 'Client cache  ':
+	command => '/usr/bin/ssh -t gddn249 mmchconfig pagepool=4G -N ${hostname}-ib',
+	user => 'root',
+	}
+
+	exec { 'start gpfs on client boot  ':
+	command => '/usr/bin/ssh -t gddn249 mmchconfig autoload=yes -N ${hostname}-ib',
+	user => 'root',
+	}
+
+	exec { 'set client boundries for performance.  ':
+	command => '/usr/bin/ssh -t gddn249 mmchconfig maxMBps=20000 -N ${hostname}-ib',
+	user => 'root',
+	}
+	
+	exec { 'shutdown gpfs on new client  ':
+	command => '/usr/bin/ssh -t gddn249 mmshutdown -N ${hostname}-ib',
+	user => 'root',
+	}
+	
+	exec { 'start them up with new setttings  ':
+	command => '/usr/bin/ssh -t gddn249 mmstartup -N ${hostname}-ib',
+	user => 'root',
+	}
+
+}
+

@@ -1,0 +1,48 @@
+class gamma::nfs{
+
+
+#        if ($this_is_a_pbs_server) {
+#                $mount_options='rw,rsize=8192,wsize=8192,soft,bg,nodev'
+#        }
+#        else {
+#                $mount_options='ro,rsize=8192,wsize=8192,soft,bg,nodev'
+#        }
+
+             ## Powerapps folders
+
+#make sure nfs client is installed: 
+ensure_packages(['nfs-utils'],{'ensure'=>'present'})
+
+        file { [ "/powerapps"  ]:
+                ensure => 'directory',
+        }->
+
+
+
+        mount { '/powerapps':
+                ensure  => 'mounted',
+                device  => 'ccapps.tau.ac.il:/ccapps/powerapps',
+                dump    => '0',
+                fstype  => 'nfs',
+                options => 'ro,rsize=8192,wsize=8192,soft,bg,nodev',
+                #options => $mount_options,
+                pass    => '0',
+        }
+
+        file { [ '/a', '/a/home', '/a/home/cc', '/a/home/cc/physics' ]:
+                ensure => 'directory',
+		owner  => 'root',
+		mode => 0755,
+        }->
+	
+        mount { '/a/home/cc/physics':
+                ensure  => 'mounted',
+                device  => 'gamma:/a/home/cc/physics',
+                dump    => '0',
+                fstype  => 'nfs',
+                options => 'rw,soft,bg,nodev,nfsvers=3,tcp',
+                #options => $mount_options,
+                pass    => '0',
+        }
+
+}

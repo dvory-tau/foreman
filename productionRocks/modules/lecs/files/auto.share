@@ -1,0 +1,4 @@
+apps  -nfsvers=3  lecs2.local:/export/&
+bio  -nfsvers=3 lecs2:/export/&
+home  -nfsvers=3 lecs2:/export/&
+

@@ -1,0 +1,100 @@
+class hydrogen::group{
+
+group { 'mordkov':
+  			  ensure => 'present',
+  			  gid    => '1000',
+     }
+group { 'danny':
+  			  ensure => 'present',
+  			  gid    => '500',
+     }
+group { 'nitzan':
+  			  ensure => 'present',
+  			  gid    => '501',
+     }
+group { 'vered':
+                          ensure => 'present',
+                          gid    => '502',
+     }
+group { 'yoel':
+                          ensure => 'present',
+                          gid    => '503',
+     }
+group { 'inonshar':
+                          ensure => 'present',
+                          gid    => '504',
+     }
+group { 'misha':
+                          ensure => 'present',
+                          gid    => '506',
+     }
+group { 'einat':
+                          ensure => 'present',
+                          gid    => '507',
+     }
+group { 'yonatant':
+                          ensure => 'present',
+                          gid    => '508',
+     }
+group { 'michalo2':
+                          ensure => 'present',
+                          gid    => '509',
+     }
+group { 'oded':
+                          ensure => 'present',
+                          gid    => '510',
+     }
+group { 'maui':
+                          ensure => 'present',
+                          gid    => '511',
+     }
+group { 'guy':
+                          ensure => 'present',
+                          gid    => '512',
+     }
+group { 'chu':
+                          ensure => 'present',
+                          gid    => '513',
+     }
+group { 'migliore':
+                          ensure => 'present',
+                          gid    => '514',
+     }
+group { 'mario':
+                          ensure => 'present',
+                          gid    => '515',
+     }
+group { 'noa':
+                          ensure => 'present',
+                          gid    => '516',
+     }
+group { 'ogodsi':
+                          ensure => 'present',
+                          gid    => '517',
+     }
+group { 'manmohan':
+                          ensure => 'present',
+                          gid    => '518',
+     }
+group { 'santanum':
+                          ensure => 'present',
+                          gid    => '519',
+     }
+group { 'cosby':
+                          ensure => 'present',
+                          gid    => '520',
+     }
+group { 'inbal':
+                          ensure => 'present',
+                          gid    => '522',
+     }
+group { 'dvory':
+                          ensure => 'present',
+                          gid    => '523',
+     }
+group { 'renai':
+                          ensure => 'present',
+                          gid    => '524',
+     }
+
+}

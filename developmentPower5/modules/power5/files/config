@@ -1,0 +1,3 @@
+$clienthost power5
+$restrict_user_maxsysid 499
+$usecp *:/ /

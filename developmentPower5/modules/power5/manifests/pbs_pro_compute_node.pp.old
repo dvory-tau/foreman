@@ -1,0 +1,62 @@
+class power5::pbs_pro_compute_node{
+#-> is ordring
+#service pbs stop;tar -zxf /export/pbs_client.tar.gz -C /;rpm -i --replacefiles --noscripts --relocate /usr/pbs=/opt/pbs /export/PBSPro_13.0.2/linux26_x86_64/pbs-mom-13.0.2.153173-0.x86_64.rpm;service pbs start
+
+#/etc/pbs.conf
+#/etc/init.d/pbs
+#/var/spool/PBS
+#/opt/pbs
+#rpm -i --replacefiles --noscripts --relocate /usr/pbs=/opt/pbs /export/PBSPro_13.0.2/linux26_x86_64/pbs-mom-13.0.2.153173-0.x86_64.rpm
+#
+#        file {  "/export":
+#                ensure => 'directory',
+#        }
+#
+#        mount { '/export':
+#                ensure  => 'mounted',
+#                device  => 'power7.local:/export',
+#                dump    => '0',
+#                fstype  => 'nfs',
+#                options => 'ro,soft,bg,nodev,nfsvers=3,tcp',
+#                pass    => '0',
+#                require => File[ "/export" ],
+#        }
+	require power5::power2_mount
+
+	exec {'tar -zxf /export/pbs_client.tar.gz -C /':
+		unless => 'test -f /etc/pbs.conf',
+		       path    => ["/usr/bin", "/usr/sbin","/bin"],
+
+	}->      #unpack mom on node
+
+#	package {"pbs_client":
+#		provider=>rpm,
+#			ensure=>installed,
+#			install_options => ['--replacefiles','--noscripts','--relocate /usr/pbs=/opt/pbs'],
+#			source=> 'puppet:///modules/power5/pbs-mom-13.0.2.153173-0.x86_64.rpm'
+#	}->
+
+	exec {'rpm -i --replacefiles --noscripts --relocate /usr/pbs=/opt/pbs /export/PBSPro_13.0.2/linux26_x86_64/pbs-mom-13.0.2.153173-0.x86_64.rpm':
+		unless => 'test -f /opt/pbs/bin/qsub',
+		       path    => ["/usr/bin", "/usr/sbin","/bin"],
+
+	}->
+	
+	        file { '/var/spool/PBS/mom_priv/config':
+         ensure  => present,
+         owner  => 'root',
+         group  => 'root',
+         mode   => '0644',
+         source => 'puppet:///modules/power5/config',
+        }~>
+	
+
+	service {'pbs':
+		enable => 'true',
+		       ensure => 'running',
+
+	}#service pbsmom enable and running
+
+
+}#class
+

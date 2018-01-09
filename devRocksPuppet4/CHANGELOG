@@ -1,0 +1,121 @@
+0.5.5
+new:	rocks:	smartd checking
+upd:	all:	migrate to puppet4 language
+
+
+0.5.3
+hotfix:
+		power:
+			nfs mount parameters
+		lecs2:
+			move biodata mount to IBM
+			fix lecs2 mounts 
+update:
+		power: systemlimits: add soft limits (mathlab problem)
+
+0.5.2
+fix:
+	power:
+		rootaccess: rename internal files
+new:
+	power:
+		paths module
+		systemlimits add  /etc/system/limits.conf copy from puppet server
+
+		new paths module for powerapps
+		rootaccess: fix internal files name for rootaccess
+0.5.1
+upd:
+	power:
+		new hosts in /etc/hosts file
+		nfs: add powerapps mount
+	nshomron:
+		nfs: add bioseq/data link
+	rocks:
+		protection: add option to disable it (fact rocks_protection_status)
+
+fix:
+	power:
+		power6 authorization key
+
+  0.5.hotfix_power6_sshkey                                                                                                                                                                                  
+  fix: add authorization key for power6                                                                                                                                                                     
+  0.5                                                                                                                                                                                                       
+  new: power: sudo: sudo for zabbix                                                                                                                                                                         
+  new: gandalf: backup script                                                                                                                                                                               
+  new: rafiki: libs, nfs modules                                                                                                                                                                            
+  upd: nshomron: nfs: adding bioseq dir only                                                                                                                                                                
+  upd: rocks: rootaccess allow to change root pwd, authorization_key independently                                                                                                                          
+                                                                                                                                                                                                            
+  0.4.2.hotfix_rootaccess_independently                                                                                                                                                                     
+  upd: rocks: rootaccess allow to change root pwd, authorization_key independently                                                                                                                          
+                                                                                                                                                                                                            
+  0.4.2                                                                                                                                                                                                     
+    inc: 0.4.1.hotfix                                                                                                                                                                                       
+                                                                                                                                                                                                            
+    new:                                                                                                                                                                                                    
+            rocks:          rootaccess class                                                                                                                                                                
+            nshomron:       rootaccess class (will be removed)                                                                                                                                              
+            gservers:       puppet: adding cron @reboot                                                                                                                                                     
+                                                                                                                                                                                                            
+    upd:                                                                                                                                                                                                    
+            power: addmodules2bash fix                                                                                                                                                                      
+            gservers: puppet: aftereboot cron param                                                                                                                                                         
+                                                                                                                                                                                                            
+  0.4.1.hotfix                                                                                                                                                                                              
+    upd: power: addmodules2bash fix 
+
+0.4.1
+new: rocks: zabbixagent class (fist w/o real zabbix)
+new: rocks: ib, ibmaster classes
+new: gservers: puppet class. it supports basic + agent certname options
+upd: 
+	lecs: add protection to all modules
+	jekyl: add protection to all modules
+	nshomron: add protection to all modules
+	power: add protection to all modules
+	rocks: 
+		add protection to all modules
+		rename rocks::rocksparam to rocks::params
+	gservers: 
+		puppet: adding lastrunfile parameter
+		puppet: permanent set lastrunfile
+fix: 
+	rocks: ib fix broken class
+	power: hosts: fix .local hostname
+del: 
+	rocks: remove rocksnetwork, rocksprotection, rockspuppet, rocksrepos classes (moved them to the same one wo rocks)
+
+
+0.4
+new:	
+	jekyl:
+		new modules hosts, rootaccess
+	nshomron:
+		nfs,hosts modules
+	rocks:
+		ldap,module,globalpath,hosts(with parameter) classes
+
+upd:
+	rocks:
+		rename power::power-nfs class to power::nfs
+		rename power::power-ib to power::hosts
+		rename power::powerpassword to power::rootaccess
+		rename power::powerservices to power::services
+		remove local.cc from nfs mount
+		rename rename rocks* to protection, puppet, network
+		rocks: move all params to rocksparam class
+fix: 
+	rocks: 
+		localcc state file permission
+		protection: change to /var/spool/torque/server_name
+		ldap: fix configuration file location
+
+	jekyl:
+		hosts hostname switch to .local
+	lecs2:
+		hosts hostname switch to .local
+
+	nshomron:
+		nfs: fix requirements
+

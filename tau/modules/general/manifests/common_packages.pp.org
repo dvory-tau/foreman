@@ -1,0 +1,24 @@
+class general::common_packages{
+#install some base common packages
+
+#differntiate between ubuntu and centos
+if ($operatingsystem == "CentOS") or ($operatingsystem == "RedHat"){
+ $vim_package="vim-enhanced"
+ $nc="nmap-ncat"
+}#if centos
+
+if ($operatingsystem == "Ubuntu"){
+ $vim_package="vim" 
+ $nc="netcat"
+}#if ubuntu
+
+yum::group { ['Development tools']:
+  ensure  => present,
+
+}
+
+$common_packages_list = ["$vim_package","gcc","git","tree","dstat","screen","tbb","strace","ltrace","telnet","$nc","mc","nmap","emacs","fuse-libs"]
+
+package{$common_packages_list:}
+
+}

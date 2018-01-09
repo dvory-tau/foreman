@@ -1,0 +1,8 @@
+class power5::disable_iptables {
+
+service {"iptables": 
+	ensure=>"stopped",
+	enable=>"false",
+	}
+
+}
