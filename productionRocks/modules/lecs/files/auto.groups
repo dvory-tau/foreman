@@ -1,0 +1,16 @@
+bental          10.3.200.10:/ibm/bental
+bioseq.home      -fwtype=nfs,rw,asyncn,ordirplus,vers=3 biodata:/groups/bioseq.home 
+#bioseq.home     -fwtype=nfs,rw,asyncn,ordirplus,vers=3 10.3.200.10:/ibm/biodata/groups/bioseq.home 
+dorotheeh       -fwtype=nfs,rw,asyncn,vers=3 10.3.200.10:/ibm/dorotheeh 
+#hemi           -fstype=nfs,rw,async,vers=3 biodata:/groups/hemi
+#hemi2          10.3.200.10:/ibm/hemi
+iftach           -fstype=nfs,rw,async,nordirplus,vers=3 biodata2:/groups/iftach
+lilach_hadany   10.3.200.10:/ibm//lilach_hadany
+mickey_gurevitz -fstype=nfs,nordirplus biodata:/groups/mickey_gurevitz
+#nshomron       10.3.200.10:/ibm/nshomron
+pupko           -fstype=nfs,rw,hard,bg,nodev,intr 10.3.200.10:/ibm/pupko
+staff           -fstype=nfs,rw,async,nordirplus,vers=3 biodata:/groups/staff
+igv             10.3.200.10:/ibm/igv
+#meiri          -fwtype=nfs,rw,async,nordirplus,vers=3 biodata:/groups/meiri
+itay_mayrose 10.3.200.10:/ibm/itay_mayrose
+

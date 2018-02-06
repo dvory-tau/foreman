@@ -69,6 +69,32 @@ class lecs::nfs {
                 pass    => '0',
         }
 
+# And autofs:
+# Added by Dvory (as in productionRocks environment)
+        file {'/etc/auto.share':
+		#if the file is changed - trigger a restart to autofs service
+		notify => Service['autofs'],
+                ensure => present,
+                owner  => 'root',
+                group  => 'root',
+                mode   => '0644',
+                source => 'puppet:///modules/lecs/auto.share'
+        }
+	# Added by Dvory 5/2/2018
+        file {'/etc/auto.groups':
+                #if the file is changed - trigger a restart to autofs service
+                notify => Service['autofs'],
+                ensure => present,
+                owner  => 'root',
+                group  => 'root',
+                mode   => '0644',
+                source => 'puppet:///modules/lecs/auto.groups'
+        }
+
+	service { 'autofs':
+	    	ensure  => 'running',
+    		enable  => true,
+ 	 }
 
 }
 

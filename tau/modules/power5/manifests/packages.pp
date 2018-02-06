@@ -3,7 +3,7 @@ class power5::packages{
 	#require power5::power2_mount
 
 	$centos_packages = [ 'nfs-utils', 'rpcbind', 'environment-modules', 'xorg-x11-xauth', 'mesa-libGLU', 'mesa-libGLU-devel', 'bwa',
-		    'zlib', 'zlib-devel', 'zlib-static',
+		    'zlib', 'zlib-devel', 'zlib-static', 'dos2unix', 
 		    'ghostscript','ghostscript-fonts','libXfont','urw-fonts','xorg-x11-font-utils','lapack-devel','gcc-c++','grace','PyQt4','libXdmcp','xorg-x11-apps','libXtst','tmux','autojump'
 	]
 
@@ -37,7 +37,7 @@ class power5::packages{
 #Execution halted
 # Need to be updated again - to latest version, as soon as problem is resolved
 # xterm was added for the benefit of AtomEye (user: gkovel)
-	$centos7_packages = ['glibc.i686','compat-libgfortran-41.x86_64','doxygen','xterm','libXcomposite','lsof', 'compat-openmpi16', 'mlocate', 'compat-libtiff3', 'java-1.8.0-openjdk-devel-1.8.0.121-0.b13.el7_3.x86_64']
+	$centos7_packages = ['glibc.i686','compat-libgfortran-41.x86_64','doxygen','xterm','libXcomposite','lsof', 'compat-openmpi16', 'mlocate', 'compat-libtiff3', 'java-1.8.0-openjdk-devel-1.8.0.121-0.b13.el7_3.x86_64', 'fuse']
 	
 		package {$centos7_packages:
 			ensure => 'installed',	
