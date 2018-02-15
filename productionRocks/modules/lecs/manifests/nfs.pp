@@ -55,6 +55,15 @@ class lecs::nfs {
                 pass    => '0',
                 require => File[ "/groups/dorotheeh/data" ],
         }
+        mount {'/usr/local.cc':
+               ensure  => 'mounted',
+                device  => 'ccapps.tau.ac.il:/ccapps/usr/local.linux',
+                dump    => '0',
+                fstype  => 'nfs',
+                options => 'ro,hard,bg,nodev,intr',
+                pass    => '0',
+                require => File[ "/usr/local.cc" ],
+        }
 # And autofs:
         file {'/etc/auto.share':
 		#if the file is changed - trigger a restart to autofs service

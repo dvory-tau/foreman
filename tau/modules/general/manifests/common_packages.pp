@@ -62,7 +62,7 @@ class general::common_packages ($enable_Base_repo) {
 
 #$common_packages_list = ["$vim_package","gcc","git","tree","dstat","screen","tbb","strace","ltrace","telnet","$nc","mc","nmap","emacs","fuse-libs","$nfsclient"]
 
-	$common_packages_list = ["$vim_package","gcc","git","tree","dstat","screen","tbb","strace","ltrace","telnet","$nc","mc","nmap","emacs","fuse-libs","nano","gedit"]
+	$common_packages_list = ["$vim_package","gcc","git","tree","dstat","screen","tbb","strace","ltrace","telnet","$nc","mc","nmap","emacs","fuse-libs","nano","gedit","elfutils"]
 
 	ensure_packages($common_packages_list, {'ensure' => 'present'})
 

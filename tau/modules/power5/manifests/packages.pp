@@ -4,8 +4,9 @@ class power5::packages{
 
 	$centos_packages = [ 'nfs-utils', 'rpcbind', 'environment-modules', 'xorg-x11-xauth', 'mesa-libGLU', 'mesa-libGLU-devel', 'bwa',
 		    'zlib', 'zlib-devel', 'zlib-static', 'dos2unix', 
-		    'ghostscript','ghostscript-fonts','libXfont','urw-fonts','xorg-x11-font-utils','lapack-devel','gcc-c++','grace','PyQt4','libXdmcp','xorg-x11-apps','libXtst','tmux','autojump'
-	]
+		    'ghostscript','ghostscript-fonts','libXfont','urw-fonts','xorg-x11-font-utils','lapack-devel','gcc-c++','grace','PyQt4','libXdmcp','xorg-x11-apps','libXtst','tmux','autojump']
+
+#Dvory - removed elfutils - because already appears in tau common_packages.pp
 
 	package { $centos_packages:
       		ensure => 'installed',

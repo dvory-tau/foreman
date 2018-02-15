@@ -274,6 +274,27 @@ class power5::nfs {
         target=>"/powerapps/export",
         force=>"true",
         }
- 
+
+	#Added by Dvory (requested by Danny --> for shimshi)
+	file {"/scratch":
+		ensure => link,
+		target => "/home",
+	}
+	
+        ## /mathematica folders
+        file { [ "/mathematica"  ]:
+                ensure => 'directory',
+        }->
+
+        mount { '/mathematica':
+                ensure  => 'mounted',
+                device  => 'ccapps.tau.ac.il:/ccapps/mathematica',
+                dump    => '0',
+                fstype  => 'nfs',
+#                options => 'rw,rsize=8192,wsize=8192,soft,bg,nodev',
+                options => $mount_options,
+                pass    => '0',
+                require => File[ "/mathematica" ],
+        }
 
 }
